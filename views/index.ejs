@@ -5,7 +5,107 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="ppck-ver" content="cc46a7e796c73003ae65709479dcde16" />
-    <title>LinkStream - Premium URL Shortener</title>
+    <title>EbookGuy Shortener - Share Stories</title>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <nav class="navbar">
+        <div class="logo">EbookGuy Shortener</div>
+        <div class="nav-links">
+            <a href="https://t.me/ebookguy" target="_blank"><i class="fab fa-telegram"></i> Join Channel</a>
+            <a href="https://t.me/freeaudiobooksbot" target="_blank"><i class="fas fa-robot"></i> Start Bot</a>
+            <a href="/admin" class="btn-nav">Admin</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="hero-content">
+            <h1>Share Stories, <br><span class="highlight">Not Long Links</span></h1>
+            <p class="subtitle">The official URL shortener for <strong>EbookGuy</strong>. Clean, fast, and ready for
+                your readers.</p>
+
+            <div class="glass shortener-box">
+                <div class="input-group">
+                    <input type="url" id="originalUrl" placeholder="Paste your long link here..." required>
+                    <button id="shortenBtn" onclick="shortenUrl()">Shorten</button>
+                </div>
+                <div id="result" class="result-box hidden">
+                    <span id="shortUrl"></span>
+                    <button id="copyBtn" onclick="copyToClipboard()">Copy</button>
+                </div>
+            </div>
+
+            <div class="stats-row">
+                <div class="stat-item">
+                    <h3>1M+</h3>
+                    <p>Books Shared</p>
+                </div>
+                <div class="stat-item">
+                    <h3>500K+</h3>
+                    <p>Happy Readers</p>
+                </div>
+                <div class="stat-item">
+                    <h3>99.9%</h3>
+                    <p>Uptime</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function shortenUrl() {
+            const originalUrl = document.getElementById('originalUrl').value;
+            const resultBox = document.getElementById('result');
+            const shortUrlSpan = document.getElementById('shortUrl');
+            const btn = document.getElementById('shortenBtn');
+
+            if (!originalUrl) return alert("Please enter a URL");
+
+            btn.innerText = "Shortening...";
+            btn.disabled = true;
+
+            try {
+                const response = await fetch('/demo', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ originalUrl })
+                });
+
+                const data = await response.json();
+
+                if (data.shortCode) {
+                    const fullUrl = `${window.location.origin}/${data.shortCode}`;
+                    shortUrlSpan.innerText = fullUrl;
+                    resultBox.classList.remove('hidden');
+                } else {
+                    alert("Error shortening URL");
+                }
+            } catch (err) {
+                console.error(err);
+                alert("Server error");
+            }
+
+            btn.innerText = "Shorten";
+            btn.disabled = false;
+        }
+
+        function copyToClipboard() {
+            const text = document.getElementById('shortUrl').innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                const copyBtn = document.getElementById('copyBtn');
+                copyBtn.innerText = "Copied!";
+                setTimeout(() => copyBtn.innerText = "Copy", 2000);
+            });
+        }
+    </script>
 </body>
 
 </html>
