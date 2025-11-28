@@ -17,6 +17,42 @@
             <a id="continue-btn" href="<%= originalUrl %>" class="btn disabled">Continue</a>
         </div>
     </div>
+
+    <script>
+        let timeLeft = 5;
+        const countdownEl = document.getElementById('countdown');
+        const continueBtn = document.getElementById('continue-btn');
+
+        const timer = setInterval(() => {
+            timeLeft--;
+            countdownEl.textContent = timeLeft;
+
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                countdownEl.parentElement.innerHTML = "Link is ready!";
+                continueBtn.classList.remove('disabled');
+            }
+        }, 1000);
+
+        // Prevent spam clicking
+        continueBtn.addEventListener('click', (e) => {
+            if (continueBtn.classList.contains('disabled')) {
+                e.preventDefault();
+                return;
+            }
+
+            // Disable button immediately after click
+            continueBtn.classList.add('disabled');
+            continueBtn.innerText = "Redirecting...";
+            continueBtn.style.pointerEvents = "none"; // Extra safety
+            continueBtn.style.opacity = "0.7";
+        });
+    </script>
+    <script type="text/javascript">
+        var uid = '497446';
+        var wid = '749063';
+        var pop_tag = document.createElement('script'); pop_tag.src = '//cdn.popcash.net/show.js'; document.body.appendChild(pop_tag);
+        pop_tag.onerror = function () { pop_tag = document.createElement('script'); pop_tag.src = '//cdn2.popcash.net/show.js'; document.body.appendChild(pop_tag) };
     </script>
 </body>
 
