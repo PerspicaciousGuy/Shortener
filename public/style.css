@@ -1,0 +1,472 @@
+:root {
+    --primary: #5d4037;
+    /* Leather Brown */
+    --secondary: #d84315;
+    /* Burnt Orange */
+    --bg-color: #f5f5dc;
+    /* Parchment */
+    --text-color: #2c1810;
+    /* Dark Brown */
+    --glass: rgba(255, 250, 240, 0.9);
+    /* Creamy Glass */
+    --border: #d7ccc8;
+}
+
+/* Import Merriweather Font */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Outfit:wght@400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Merriweather', serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    background-image: url("https://www.transparenttextures.com/patterns/cream-paper.png");
+    color: var(--text-color);
+    overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Background Animation - Subtle Ink Blots */
+.background-shapes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    opacity: 0.4;
+}
+
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.4;
+    animation: float 15s infinite ease-in-out;
+}
+
+.shape-1 {
+    width: 500px;
+    height: 500px;
+    background: #d7ccc8;
+    top: -150px;
+    left: -150px;
+}
+
+.shape-2 {
+    width: 400px;
+    height: 400px;
+    background: #ffe0b2;
+    bottom: -100px;
+    right: -100px;
+    animation-delay: 3s;
+}
+
+.shape-3 {
+    width: 300px;
+    height: 300px;
+    background: #cfd8dc;
+    top: 40%;
+    left: 40%;
+    animation-delay: 6s;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(20px, -20px);
+    }
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background: rgba(245, 245, 220, 0.95);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    font-style: italic;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.95rem;
+}
+
+.nav-links a:hover {
+    color: var(--secondary);
+}
+
+.btn-nav {
+    background: var(--primary);
+    color: #fff !important;
+    padding: 8px 20px;
+    border-radius: 4px;
+    border: none;
+}
+
+.btn-nav:hover {
+    background: #3e2723;
+}
+
+/* Hero Section */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    text-align: center;
+    padding: 20px;
+}
+
+.hero-content {
+    max-width: 800px;
+    width: 100%;
+}
+
+h1 {
+    font-size: 3.5rem;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: var(--primary);
+}
+
+.highlight {
+    color: var(--secondary);
+    font-style: italic;
+    background: none;
+    -webkit-text-fill-color: initial;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #5d4037;
+    margin-bottom: 40px;
+    font-family: 'Outfit', sans-serif;
+}
+
+/* Paper Card Box */
+.glass {
+    background: #fffaf0;
+    border: 1px solid var(--border);
+    box-shadow:
+        0 4px 6px rgba(0, 0, 0, 0.05),
+        0 0 0 4px rgba(255, 255, 255, 0.5) inset;
+}
+
+.shortener-box {
+    padding: 30px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 600px;
+    margin: 0 auto 50px;
+    position: relative;
+}
+
+/* Tape Effect */
+.shortener-box::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    width: 100px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transform: translateX(-50%) rotate(-2deg);
+}
+
+.input-group {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+}
+
+input {
+    flex: 1;
+    background: #fff;
+    border: 1px solid var(--border);
+    padding: 15px 20px;
+    color: var(--text-color);
+    font-size: 1rem;
+    outline: none;
+    border-radius: 3px;
+    font-family: 'Outfit', sans-serif;
+}
+
+input:focus {
+    border-color: var(--primary);
+}
+
+button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 3px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Outfit', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+button:hover {
+    background: #3e2723;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Result Box */
+.result-box {
+    background: #efebe9;
+    padding: 15px;
+    border-radius: 3px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    border: 1px dashed var(--border);
+}
+
+.hidden {
+    display: none;
+}
+
+#shortUrl {
+    color: var(--secondary);
+    font-weight: 700;
+    font-family: 'Outfit', sans-serif;
+    word-break: break-all;
+}
+
+#copyBtn {
+    padding: 8px 15px;
+    font-size: 0.8rem;
+    background: #d7ccc8;
+    color: var(--text-color);
+}
+
+#copyBtn:hover {
+    background: #bcaaa4;
+}
+
+/* Stats */
+.stats-row {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-top: 50px;
+}
+
+.stat-item h3 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.stat-item p {
+    color: #795548;
+    font-family: 'Outfit', sans-serif;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+/* Interstitial Page Specifics */
+.interstitial-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.interstitial-container {
+    background: #fffaf0;
+    padding: 3rem;
+    border-radius: 5px;
+    box-shadow:
+        0 1px 4px rgba(0, 0, 0, 0.3),
+        0 0 40px rgba(0, 0, 0, 0.1) inset;
+    max-width: 500px;
+    width: 90%;
+    margin: auto;
+    border: 1px solid #d7ccc8;
+    position: relative;
+    animation: pageTurn 0.8s ease-out forwards;
+}
+
+/* Book Cover Effect */
+.interstitial-container::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 2px solid #8d6e63;
+    pointer-events: none;
+}
+
+.interstitial-container h1 {
+    font-size: 2rem;
+    color: #3e2723;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    font-style: italic;
+}
+
+.timer-box {
+    margin: 30px 0;
+    font-size: 1.1rem;
+}
+
+.timer-box p {
+    color: #5d4037;
+}
+
+#countdown {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #d84315;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: #5d4037;
+    color: #fffaf0;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    font-family: 'Outfit', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    border: 1px solid #3e2723;
+}
+
+.btn:hover {
+    background-color: #3e2723;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn.disabled {
+    background-color: #a1887f;
+    border-color: #a1887f;
+    pointer-events: none;
+    cursor: default;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Animations */
+@keyframes pageTurn {
+    0% {
+        transform: rotateY(90deg);
+        opacity: 0;
+    }
+
+    100% {
+        transform: rotateY(0deg);
+        opacity: 1;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    .navbar {
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-links {
+        display: flex;
+        /* Show links on mobile */
+        flex-direction: row;
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-links a {
+        margin-left: 0;
+        font-size: 0.9rem;
+    }
+
+    .container {
+        height: auto;
+        padding: 40px 20px;
+    }
+
+    .shortener-box {
+        padding: 20px;
+    }
+
+    .input-group {
+        flex-direction: column;
+    }
+
+    input {
+        width: 100%;
+        text-align: center;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    .stats-row {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    /* Interstitial Mobile */
+    .interstitial-container {
+        width: 95%;
+        padding: 2rem 1rem;
+    }
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Please Wait...</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body class="interstitial-body">
+    <div class="interstitial-container">
+        <h1>Your ebook is almost ready!</h1>
+
+        <div class="timer-box">
+            <p>Please wait <span id="countdown">5</span> seconds...</p>
+            <a id="continue-btn" href="<%= originalUrl %>" class="btn disabled">Continue</a>
+        </div>
+    </div>
+
+    <script>
+        let timeLeft = 5;
+        const countdownEl = document.getElementById('countdown');
+        const continueBtn = document.getElementById('continue-btn');
+
+        const timer = setInterval(() => {
+            timeLeft--;
+            countdownEl.textContent = timeLeft;
+
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                countdownEl.parentElement.innerHTML = "Link is ready!";
+                continueBtn.classList.remove('disabled');
+            }
+        }, 1000);
+    </script>
+    <script type="text/javascript">
+        var uid = '497446';
+        var wid = '749063';
+        var pop_tag = document.createElement('script'); pop_tag.src = '//cdn.popcash.net/show.js'; document.body.appendChild(pop_tag);
+        pop_tag.onerror = function () { pop_tag = document.createElement('script'); pop_tag.src = '//cdn2.popcash.net/show.js'; document.body.appendChild(pop_tag) };
+    </script>
+</body>
+
+</html>
