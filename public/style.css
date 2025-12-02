@@ -283,39 +283,10 @@ button:hover {
     color: var(--text-color);
 }
 
-#copyBtn:hover {
-    background: #bcaaa4;
-}
-
-/* Stats */
-.stats-row {
-    display: flex;
-    justify-content: center;
-    gap: 50px;
-    margin-top: 50px;
-}
-
-.stat-item h3 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--primary);
-}
-
-.stat-item p {
-    color: #795548;
-    font-family: 'Outfit', sans-serif;
-    text-transform: uppercase;
-    font-size: 0.8rem;
-    letter-spacing: 1px;
-}
-
-/* Interstitial Page Specifics */
-.interstitial-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    text-align: center;
+justify-content: center;
+align-items: center;
+height: 100vh;
+text-align: center;
 }
 
 .interstitial-container {

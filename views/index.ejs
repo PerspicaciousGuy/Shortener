@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="ppck-ver" content="cc46a7e796c73003ae65709479dcde16" />
-    <title>EbookGuy Shortener - Share Stories</title>
+    <title>EbookGuy Library - Find Any Book Instantly</title>
     <link rel="stylesheet" href="/style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
@@ -18,7 +18,7 @@
     </div>
 
     <nav class="navbar">
-        <div class="logo">EbookGuy Shortener</div>
+        <div class="logo">EbookGuy Library</div>
         <div class="nav-links">
             <a href="https://t.me/ebookguy" target="_blank"><i class="fab fa-telegram"></i> Join Channel</a>
             <a href="https://t.me/freeaudiobooksbot" target="_blank"><i class="fas fa-robot"></i> Start Bot</a>
@@ -28,84 +28,32 @@
 
     <div class="container">
         <div class="hero-content">
-            <h1>Share Stories, <br><span class="highlight">Not Long Links</span></h1>
-            <p class="subtitle">The official URL shortener for <strong>EbookGuy</strong>. Clean, fast, and ready for
-                your readers.</p>
+            <h1>Find Any Book <br><span class="highlight">Instantly</span></h1>
+            <p class="subtitle">The ultimate Telegram library. Simply send the bot a book name and get the file in
+                seconds.</p>
 
-            <div class="glass shortener-box">
-                <div class="input-group">
-                    <input type="url" id="originalUrl" placeholder="Paste your long link here..." required>
-                    <button id="shortenBtn" onclick="shortenUrl()">Shorten</button>
-                </div>
-                <div id="result" class="result-box hidden">
-                    <span id="shortUrl"></span>
-                    <button id="copyBtn" onclick="copyToClipboard()">Copy</button>
-                </div>
+            <div class="hero-buttons">
+                <a href="https://t.me/freeaudiobooksbot" target="_blank" class="btn-hero primary">
+                    <i class="fas fa-robot"></i> Start Bot & Search
+                </a>
+                <a href="https://t.me/ebookguy" target="_blank" class="btn-hero secondary">
+                    Join Community
+                </a>
             </div>
 
-            <div class="stats-row">
+            <div class="stats-row new-stats">
                 <div class="stat-item">
-                    <h3>1M+</h3>
-                    <p>Books Shared</p>
+                    <h3>20K+</h3>
+                    <p>Active Users</p>
                 </div>
+                <div class="stat-divider"></div>
                 <div class="stat-item">
-                    <h3>500K+</h3>
-                    <p>Happy Readers</p>
-                </div>
-                <div class="stat-item">
-                    <h3>99.9%</h3>
-                    <p>Uptime</p>
+                    <h3>100K+</h3>
+                    <p>Books Available</p>
                 </div>
             </div>
         </div>
     </div>
-
-    <script>
-        async function shortenUrl() {
-            const originalUrl = document.getElementById('originalUrl').value;
-            const resultBox = document.getElementById('result');
-            const shortUrlSpan = document.getElementById('shortUrl');
-            const btn = document.getElementById('shortenBtn');
-
-            if (!originalUrl) return alert("Please enter a URL");
-
-            btn.innerText = "Shortening...";
-            btn.disabled = true;
-
-            try {
-                const response = await fetch('/demo', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ originalUrl })
-                });
-
-                const data = await response.json();
-
-                if (data.shortCode) {
-                    const fullUrl = `${window.location.origin}/${data.shortCode}`;
-                    shortUrlSpan.innerText = fullUrl;
-                    resultBox.classList.remove('hidden');
-                } else {
-                    alert("Error shortening URL");
-                }
-            } catch (err) {
-                console.error(err);
-                alert("Server error");
-            }
-
-            btn.innerText = "Shorten";
-            btn.disabled = false;
-        }
-
-        function copyToClipboard() {
-            const text = document.getElementById('shortUrl').innerText;
-            navigator.clipboard.writeText(text).then(() => {
-                const copyBtn = document.getElementById('copyBtn');
-                copyBtn.innerText = "Copied!";
-                setTimeout(() => copyBtn.innerText = "Copy", 2000);
-            });
-        }
-    </script>
 </body>
 
 </html>
